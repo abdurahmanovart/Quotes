@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.github.arturx.quotes.R;
 
 /**
- * @author arturx on 05/10/2017
+ * @author arturx on 05/09/2017
  */
 
 public class QuoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -26,7 +26,7 @@ public class QuoteViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View v) {
-        mListener.onQuoteClick(getLayoutPosition());
+        mListener.onQuoteClick(v, getLayoutPosition());
     }
 
     public void setQuoteTextViewValue(String text) {

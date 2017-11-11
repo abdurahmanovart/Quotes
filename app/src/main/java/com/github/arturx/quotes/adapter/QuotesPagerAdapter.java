@@ -8,7 +8,7 @@ import com.github.arturx.quotes.QuotesRealmFragment;
 import com.github.arturx.quotes.QuotesServerFragment;
 
 /**
- * @author arturx on 05/10/2017
+ * @author arturx on 05/09/2017
  */
 
 public class QuotesPagerAdapter extends FragmentStatePagerAdapter {
