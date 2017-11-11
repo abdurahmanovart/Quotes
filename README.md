@@ -1,12 +1,14 @@
 ## Quotes
 
-App gets random quotes. It is possible to choose one of the category - famous or movies. Also you can choose number of quotes obtained 1-10. User is supposed to pull to refresh to update list of quotes. Also you can save quotes to favorites. They are going to be saved locally and can be read offline. 
+|App gets random quotes. It is possible to choose one of the category - famous or movies. Also you can choose number of quotes |obtained 1-10. User is supposed to pull to refresh to update list of quotes. Also you can save quotes to favorites. They are |going to be saved locally and can be read offline. 
 
 ![main](/art/main.gif)
 
-Except the core app you can use android widget. It takes random quote if there is connection and updates in every 15 min. If no connection, it gets a quote from local database named favorites.
+
+|Except the core app you can use android widget. It takes random quote if there is connection and updates in every 15 min. If |no connection, it gets a quote from local database named favorites.
 
 ![widget](/art/widget.gif)
+
 
 ## Libraries used
 | Name            | Description                                                 |  
