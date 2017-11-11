@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,10 @@ import android.widget.Toast;
 
 import com.github.arturx.quotes.adapter.QuotesPagerAdapter;
 import com.github.arturx.quotes.bean.Quote;
-import com.github.arturx.quotes.utils.Utils;
+import com.github.arturx.quotes.dagger.QuoteApplication;
+import com.github.arturx.quotes.utils.SharedPrefManager;
+
+import javax.inject.Inject;
 
 import io.realm.Realm;
 
@@ -26,17 +30,24 @@ public class MainActivity extends AppCompatActivity implements
         QuotesRealmFragment.OnQuoteRealmClickListener,
         QuotesServerFragment.OnQuoteServerClickListener {
 
+    @Inject
+    Realm mRealm;
+
+    @Inject
+    SharedPrefManager mPrefManager;
+
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private QuotesPagerAdapter mPagerAdapter;
-    private Realm mRealm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((QuoteApplication) getApplication())
+                .getNetComponent()
+                .inject(this);
         setContentView(R.layout.activity_main);
-        mRealm = Realm.getInstance(this);
         mPagerAdapter = new QuotesPagerAdapter(getSupportFragmentManager());
         initUI();
     }
@@ -95,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements
                     @Override
                     public void onClick(View v) {
                         removeQuoteFromFav(quote);
-                        showMessagePullToRefresh();
                     }
                 }).show();
     }
@@ -129,8 +139,8 @@ public class MainActivity extends AppCompatActivity implements
         final RadioButton famousButton = (RadioButton) view.findViewById(R.id.famous_radio_button);
         final RadioButton moviesButton = (RadioButton) view.findViewById(R.id.movies_radio_button);
 
-        countEditText.setText(String.valueOf(Utils.readQuotesCount(this)));
-        famousButton.setChecked(Utils.readIsFamousChecked(this));
+        countEditText.setText(String.valueOf(mPrefManager.readQuotesCount()));
+        famousButton.setChecked(mPrefManager.readIsFamousChecked());
         moviesButton.setChecked(!famousButton.isChecked());
 
         new AlertDialog.Builder(this).setTitle(R.string.settings)
@@ -144,8 +154,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void saveSettings(String count, boolean isFamousChecked) {
-        Utils.writeQuotesCount(this, count);
-        Utils.writeIsFamousChecked(this, isFamousChecked);
+        mPrefManager.writeQuotesCount(count);
+        mPrefManager.writeIsFamousChecked(isFamousChecked);
     }
 
     private void addQuoteToFav(Quote quote) {
@@ -164,6 +174,9 @@ public class MainActivity extends AppCompatActivity implements
                         .equalTo("quote", quote.getQuote())
                         .findFirst();
                 quote1.removeFromRealm();
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.view_pager);
+                if (fragment instanceof QuotesRealmFragment)
+                    ((QuotesRealmFragment) fragment).fillAdapter();
             }
         });
     }

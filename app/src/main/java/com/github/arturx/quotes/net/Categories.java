@@ -3,7 +3,7 @@ package com.github.arturx.quotes.net;
 import android.support.annotation.StringDef;
 
 /**
- * @author arturx on 04/09/2017
+ * @author arturx on 04/10/2017
  */
 
 public class Categories {

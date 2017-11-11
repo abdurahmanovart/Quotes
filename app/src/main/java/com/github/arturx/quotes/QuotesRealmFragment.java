@@ -8,20 +8,24 @@ import android.view.View;
 import com.github.arturx.quotes.adapter.QuoteAdapter;
 import com.github.arturx.quotes.adapter.QuotesClickListener;
 import com.github.arturx.quotes.bean.Quote;
+import com.github.arturx.quotes.dagger.QuoteApplication;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.realm.Realm;
 
 /**
- * @author arturx on 04/09/2017
+ * @author Andrey Batulov on 04/09/2017
  */
 
 public class QuotesRealmFragment extends BasicFragment implements QuotesClickListener {
 
+    @Inject
+    Realm mRealm;
+
     private OnQuoteRealmClickListener mClickListener;
-    private Realm mRealm;
 
     public static QuotesRealmFragment newInstance() {
         return new QuotesRealmFragment();
@@ -30,18 +34,17 @@ public class QuotesRealmFragment extends BasicFragment implements QuotesClickLis
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnQuoteRealmClickListener) {
-            mClickListener = (OnQuoteRealmClickListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnQuoteRealmClickListener");
-        }
+        ((QuoteApplication) getActivity().getApplication())
+                .getNetComponent()
+                .inject(this);
+        mClickListener = (OnQuoteRealmClickListener) getActivity();
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mRealm = Realm.getInstance(getContext());
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser)
+            fillAdapter();
     }
 
     @Override
@@ -75,16 +78,14 @@ public class QuotesRealmFragment extends BasicFragment implements QuotesClickLis
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    private void fillAdapter() {
+    public void fillAdapter() {
         mQuotes = getQuoteList();
         mAdapter = new QuoteAdapter(mQuotes, this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     private List<Quote> getQuoteList() {
-        List<Quote> list = new ArrayList<>();
-        list.addAll(mRealm.allObjects(Quote.class));
-        return list;
+        return mRealm.allObjects(Quote.class);
     }
 
     // endregion private methods

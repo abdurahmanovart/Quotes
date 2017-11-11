@@ -10,18 +10,18 @@ import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
 /**
- * @author arturx on 04/09/2017
+ * @author arturx on 04/10/2017
  */
 
 public interface QuoteService {
 
-    @Headers("X-Mashape-Key: 3eH3ER7RlbmshgOtLgeZ2Jsg0Wm8p1iIxaIjsngr7Gf4Ge0d3h")
+    @Headers("X-Mashape-Key: wZfS12TFbImshI6KAhgvl06keEFMp1rSiM8jsnCLbxtjKimVrl")
     @GET("/")
     Call<List<Quote>> getQuotesList(@Query("cat") @Categories.Category String cat,
                                     @Query("count") int count);
 
-    @Headers("X-Mashape-Key: 3eH3ER7RlbmshgOtLgeZ2Jsg0Wm8p1iIxaIjsngr7Gf4Ge0d3h")
+    @Headers("X-Mashape-Key: wZfS12TFbImshI6KAhgvl06keEFMp1rSiM8jsnCLbxtjKimVrl")
     @GET("/")
     Call<Quote> getQuote(@Query("cat") @Categories.Category String cat,
-                                    @Query("count") int count);
+                         @Query("count") int count);
 }
