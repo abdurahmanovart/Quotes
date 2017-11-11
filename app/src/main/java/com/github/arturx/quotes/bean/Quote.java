@@ -10,9 +10,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.realm.RealmObject;
 
 /**
- * Created by arturx on 05.10.17.
+ * @author arturx on 04/09/2017
  */
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Quote extends RealmObject {
 
@@ -23,10 +22,11 @@ public class Quote extends RealmObject {
     private String author;
 
     public Quote() {
+        // empty constructor needed
     }
 
     @NonNull
-    @JsonSetter("quote")
+    @JsonGetter("quote")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getQuote() {
         return quote;
@@ -49,4 +49,3 @@ public class Quote extends RealmObject {
         this.author = author;
     }
 }
-

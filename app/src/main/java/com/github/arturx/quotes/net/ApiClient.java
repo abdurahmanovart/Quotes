@@ -4,13 +4,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
- * Created by arturx on 06.10.17.
+ * @author arturx on 04/09/2017
  */
 
 public class ApiClient {
 
-    private static final String BASE_URL = "https://abdruxnet-random-famous-quotes.p.mashape.com";
-    private static Retrofit sRetrofit;
+    private static final String BASE_URL = "https://andruxnet-random-famous-quotes.p.mashape.com";
+    private static Retrofit sRetrofit = null;
 
     private ApiClient() {
         throw new IllegalStateException("can't create object");
