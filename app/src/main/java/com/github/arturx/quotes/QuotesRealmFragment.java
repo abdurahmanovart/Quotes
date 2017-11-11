@@ -12,7 +12,7 @@ import com.github.arturx.quotes.bean.Quote;
 import java.util.ArrayList;
 
 /**
- * @author Andrey Batulov on 04/09/2017
+ * @author arturx on 04/09/2017
  */
 
 public class QuotesRealmFragment extends BasicFragment {
