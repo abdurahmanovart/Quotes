@@ -1,6 +1,5 @@
 package com.github.arturx.quotes.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -75,10 +74,5 @@ public class SharedPrefManager {
     public boolean readIsFamousChecked() {
         boolean defaultValue = true;
         return mSharedPreferences.getBoolean(IS_FAMOUS_CHECKED, defaultValue);
-    }
-
-    private SharedPreferences.Editor getEditor(Activity activity) {
-        SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE);
-        return preferences.edit();
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/container"
-              android:background="?attr/selectableItemBackground"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    android:id="@+id/container"
+    android:background="?attr/selectableItemBackground"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/quote_text_view"
@@ -15,7 +15,7 @@
         android:padding="@dimen/padding_small"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textStyle="italic"
-        tools:text="quote text"/>
+        tools:text="quote text" />
 
     <TextView
         android:id="@+id/author_text_view"
@@ -25,11 +25,11 @@
         android:gravity="right"
         android:padding="@dimen/padding_small"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:text="author"/>
+        tools:text="author" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height"
-        android:background="@color/white"/>
+        android:background="@color/white" />
 
 </LinearLayout>

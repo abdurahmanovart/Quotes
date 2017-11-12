@@ -23,10 +23,10 @@ public class QuotesPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = null;
         switch (position) {
-            case 0 :
+            case 0:
                 fragment = QuotesServerFragment.newInstance();
                 break;
-            case 1 :
+            case 1:
                 fragment = QuotesRealmFragment.newInstance();
                 break;
         }

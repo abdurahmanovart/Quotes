@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="@dimen/padding_small">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_small">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:text="@string/choose_categories"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
     <RadioGroup
         android:id="@+id/radio_group"
@@ -26,14 +26,14 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/famous"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
         <RadioButton
             android:id="@+id/movies_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/movies"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
     </RadioGroup>
 
@@ -48,7 +48,7 @@
             android:digits="1234567890"
             android:maxLength="2"
             android:hint="@string/quotes_count_hint"
-            android:inputType="phone"/>
+            android:inputType="phone" />
 
     </android.support.design.widget.TextInputLayout>
 

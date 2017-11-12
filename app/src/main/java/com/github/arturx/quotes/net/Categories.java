@@ -12,7 +12,8 @@ public class Categories {
             FAMOUS,
             MOVIES
     })
-    public @interface Category {}
+    public @interface Category {
+    }
 
     public static final String FAMOUS = "famous";
     public static final String MOVIES = "movies";
